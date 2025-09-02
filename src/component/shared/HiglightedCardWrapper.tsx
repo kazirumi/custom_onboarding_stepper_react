@@ -18,7 +18,7 @@ const HighlightedCardWrapper = ({
   const { highlightSection, isHighlight } = usePreview();
   // index === 0 &&
 
-  const highlightedSectionRef = useRef<HTMLDivElement>(undefined);
+  const highlightedSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (highlightSection === sectionName) {

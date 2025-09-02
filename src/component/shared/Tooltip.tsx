@@ -30,7 +30,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   className,
   showArrow = true,
 }) => {
-  const tooltipSectionRef = useRef<null | HTMLElement>(null);
+  const tooltipSectionRef = useRef<HTMLDivElement>(null);
 
   const getPositionClasses = (pos: TooltipPosition) => {
     const positions = {

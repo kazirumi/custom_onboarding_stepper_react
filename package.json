@@ -11,10 +11,14 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.12",
+    "@vivaui/card": "^1.0.0",
+    "@vivaui/navbar": "^1.0.0",
     "clsx": "^2.1.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router": "^7.8.2"
+    "react-router": "^7.8.2",
+    "react-toastify": "^11.0.5",
+    "vivaui": "^1.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
@@ -27,6 +31,8 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
     "postcss": "^8.5.6",
+    "rollup-plugin-analyzer": "^4.0.0",
+    "rollup-plugin-visualizer": "^6.0.3",
     "tailwindcss": "^4.1.12",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
