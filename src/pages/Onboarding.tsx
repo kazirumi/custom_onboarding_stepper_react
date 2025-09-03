@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import reactLogo from "../assets/react.svg";
-import viteLogo from "/vite.svg";
 import { usePreview } from "../hooks/usePreview";
 import HighlightedCardWrapper from "../component/shared/HiglightedCardWrapper";
 import Tooltip from "../component/shared/Tooltip";
@@ -41,13 +39,13 @@ function App() {
                 title="Spend like a hero"
                 message="Browse games, visit their shops, and buy items with Gold"
                 buttonText="Next"
-                position="left"
+                position="bottom-left"
                 showArrow={true}
                 onButtonClick={handleTooltipButtonClick}
-                className="top-[100px]"
+                className=""
               />
             }
-            className=" !w-fit flex"
+            className=" bg-red-500 flex mt-[200px]"
           >
             {/* <a href="https://vite.dev" target="_blank">
               <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -66,7 +64,7 @@ function App() {
               title="Spend like a hero"
               message="Browse games, visit their shops, and buy items with Gold"
               buttonText="Finish"
-              position="left"
+              position="right"
               showArrow={true}
               onButtonClick={() => {
                 setIsHighlight(false);
@@ -74,8 +72,9 @@ function App() {
               }}
             />
           }
+          className=" mx-auto !w-fit"
         >
-          <div className="card inline-flex gap-2">
+          <div className="inline">
             <button onClick={() => setCount((count) => count + 1)}>
               count is {count}
             </button>

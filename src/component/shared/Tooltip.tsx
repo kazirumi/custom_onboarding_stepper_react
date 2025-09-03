@@ -40,46 +40,49 @@ const Tooltip: React.FC<TooltipProps> = ({
 
   const getPositionClasses = (pos: TooltipPosition) => {
     const positions = {
-      top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
-      bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
-      left: "right-full top-1/2 -translate-y-1/2 mr-2",
-      right: "left-full top-1/2 -translate-y-1/2 ml-2",
-      "top-left": "bottom-full right-0 mb-2",
-      "top-right": "bottom-full left-0 mb-2",
-      "bottom-left": "top-full right-0 mt-2",
-      "bottom-right": "top-full left-0 mt-2",
+      top: "bottom-full left-1/2 -translate-x-1/2 mb-4",
+      bottom: "top-full left-1/2 -translate-x-1/2 mt-4",
+      left: "right-full top-1/2 -translate-y-1/2 mr-6",
+      right: "left-full top-1/2 -translate-y-1/2 ml-6",
+      "top-left": "bottom-full right-0 mb-4",
+      "top-right": "bottom-full left-0 mb-4",
+      "bottom-left": "top-full right-0 mt-4",
+      "bottom-right": "top-full left-0 mt-4",
     };
     return positions[pos];
   };
 
   const getArrowClasses = (pos: TooltipPosition) => {
     const arrows = {
-      top: "top-full left-1/2 -translate-x-1/2 -translate-y-1/2",
-      bottom: "bottom-full left-1/2 -translate-x-1/2 translate-y-1/2",
-      left: "left-full top-1/2 -translate-y-1/2 -translate-x-1/2",
-      right: "right-full top-1/2 -translate-y-1/2 translate-x-1/2",
-      "top-left": "top-full right-3 -translate-y-1/2",
-      "top-right": "top-full left-3 -translate-y-1/2",
-      "bottom-left": "bottom-full right-3 translate-y-1/2",
-      "bottom-right": "bottom-full left-3 translate-y-1/2",
+      top: "top-full left-1/2 -translate-x-1/2",
+      bottom: "bottom-full left-1/2 -translate-x-1/2 rotate-180",
+      left: "left-full top-1/2 -translate-y-1/2 -translate-x-[2.5px] -rotate-90",
+      right: "right-full top-1/2 -translate-y-1/2 translate-x-[2.5px]  rotate-90",
+      "top-left": "top-full right-6",
+      "top-right": "top-full left-6",
+      "bottom-left": "bottom-full right-6 rotate-180",
+      "bottom-right": "bottom-full left-6 rotate-180",
     };
     return arrows[pos];
   };
 
   useEffect(() => {
-    if (tooltipSectionRef.current) {
-      tooltipSectionRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-        inline: "nearest",
-      });
+    if (tooltipSectionRef.current && position === 'bottom') {
+      setTimeout(() => {
+
+        tooltipSectionRef?.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "end",
+          inline: "nearest",
+        });
+      }, 500);
     }
   }, []);
 
   return (
     <div
       className={cn(
-        "absolute z-[10001] w-72 max-w-sm",
+        "absolute z-[10001] w-fit",
         getPositionClasses(position),
         className
       )}
@@ -96,10 +99,17 @@ const Tooltip: React.FC<TooltipProps> = ({
         {showArrow && (
           <div
             className={cn(
-              "absolute w-4 h-4 backdrop-blur-[32px] border-0 bg-[#AA9CFC]/[0.12] rotate-45",
+              "absolute",
               getArrowClasses(position),
               arrowClassName
             )}
+            style={{
+              width: 0,
+              height: 0,
+              borderLeft: '10px solid transparent',
+              borderRight: '10px solid transparent',
+              borderTop: `15px solid rgba(170, 156, 252, 0.12)`, // Matches your container
+            }}
           />
         )}
 
