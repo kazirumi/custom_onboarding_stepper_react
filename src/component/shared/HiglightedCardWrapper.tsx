@@ -8,12 +8,14 @@ interface HighlightedCardWrapperProps {
   sectionName: string;
   children: React.ReactNode;
   tooltip?: React.ReactNode; // Add tooltip prop
+  className?: string;
 }
 
 const HighlightedCardWrapper = ({
   sectionName,
   children,
   tooltip,
+  className,
 }: HighlightedCardWrapperProps) => {
   const { highlightSection, isHighlight } = usePreview();
   // index === 0 &&
@@ -23,9 +25,11 @@ const HighlightedCardWrapper = ({
   useEffect(() => {
     if (highlightSection === sectionName) {
       if (highlightedSectionRef.current) {
-        highlightedSectionRef.current.scrollIntoView(
-          { behavior: "smooth", block: "end", inline: "nearest" }
-        );
+        highlightedSectionRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "end",
+          inline: "nearest",
+        });
       }
     }
   }, [highlightSection]);
@@ -36,7 +40,8 @@ const HighlightedCardWrapper = ({
         ref={highlightedSectionRef}
         className={cn(
           "p-0 w-full relative",
-          highlightSection === sectionName && isHighlight && "z-[10000]"
+          highlightSection === sectionName && isHighlight && "z-[10000]",
+          className
         )}
       >
         {/* {highlightSection}

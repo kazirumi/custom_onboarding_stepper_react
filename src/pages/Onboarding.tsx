@@ -5,7 +5,7 @@ import { usePreview } from "../hooks/usePreview";
 import HighlightedCardWrapper from "../component/shared/HiglightedCardWrapper";
 import Tooltip from "../component/shared/Tooltip";
 import Overlay from "../component/shared/Overlay";
-
+import bgImage from "../assets/heroSection.png";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,9 +18,9 @@ function App() {
     return () => {};
   }, []);
 
-//   function closeOverlay(value: boolean) {
-//     setIsHighlight(value);
-//   }
+  //   function closeOverlay(value: boolean) {
+  //     setIsHighlight(value);
+  //   }
 
   const handleTooltipButtonClick = () => {
     console.log("Tooltip button clicked!");
@@ -29,72 +29,78 @@ function App() {
   };
   return (
     <>
-      <HighlightedCardWrapper
-        sectionName="first"
-        tooltip={
-          <Tooltip
-            title="Welcome to React + Vite!"
-            message="This is your development environment. Click on the logos above to learn more about these powerful tools for building modern web applications."
-            buttonText="Next"
-            position="left"
-            showArrow={true}
-            onButtonClick={handleTooltipButtonClick}
-            className="top-[100px]"
-          />
-        }
+      <div
+        className="w-full bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${bgImage})` }}
       >
-        <div className="flex justify-center">
-          <a href="https://vite.dev" target="_blank">
-            <img src={viteLogo} className="logo" alt="Vite logo" />
-          </a>
-          <a href="https://react.dev" target="_blank">
-            <img src={reactLogo} className="logo react" alt="React logo" />
-          </a>
+        <div className="inline-flex justify-center w-fit mx-auto">
+          <HighlightedCardWrapper
+            sectionName="first"
+            tooltip={
+              <Tooltip
+                title="Spend like a hero"
+                message="Browse games, visit their shops, and buy items with Gold"
+                buttonText="Next"
+                position="left"
+                showArrow={true}
+                onButtonClick={handleTooltipButtonClick}
+                className="top-[100px]"
+              />
+            }
+            className=" !w-fit flex"
+          >
+            {/* <a href="https://vite.dev" target="_blank">
+              <img src={viteLogo} className="logo" alt="Vite logo" />
+            </a>
+            <a href="https://react.dev" target="_blank">
+              <img src={reactLogo} className="logo react" alt="React logo" />
+            </a> */}
+            <h1>Vite + React</h1>
+          </HighlightedCardWrapper>
         </div>
-        <h1>Vite + React</h1>
-      </HighlightedCardWrapper>
-      <div className="h-[700px]"></div>
-      <HighlightedCardWrapper
-        sectionName="second"
-        tooltip={
-          <Tooltip
-            title="Welcome to React + Vite!"
-            message="This is your development environment. Click on the logos above to learn more about these powerful tools for building modern web applications."
-            buttonText="Finish"
-            position="top"
-            showArrow={true}
-            onButtonClick={() => {
-              setIsHighlight(false);
-              setHighlightSection("");
-            }}
-          />
-        }
-      >
-        <div className="card flex flex-col">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-           <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-           <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-           <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-           <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
+        <div className="h-[700px]"></div>
+        <HighlightedCardWrapper
+          sectionName="second"
+          tooltip={
+            <Tooltip
+              title="Spend like a hero"
+              message="Browse games, visit their shops, and buy items with Gold"
+              buttonText="Finish"
+              position="left"
+              showArrow={true}
+              onButtonClick={() => {
+                setIsHighlight(false);
+                setHighlightSection("");
+              }}
+            />
+          }
+        >
+          <div className="card inline-flex gap-2">
+            <button onClick={() => setCount((count) => count + 1)}>
+              count is {count}
+            </button>
+            <button onClick={() => setCount((count) => count + 1)}>
+              count is {count}
+            </button>
+            <button onClick={() => setCount((count) => count + 1)}>
+              count is {count}
+            </button>
+            <button onClick={() => setCount((count) => count + 1)}>
+              count is {count}
+            </button>
+            <button onClick={() => setCount((count) => count + 1)}>
+              count is {count}
+            </button>
+          </div>
           <p>
             Edit <code>src/App.tsx</code> and save to test HMR
           </p>
-        </div>
-      </HighlightedCardWrapper>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <Overlay isHighlight={isHighlight} />
+        </HighlightedCardWrapper>
+        <p className="read-the-docs">
+          Click on the Vite and React logos to learn more
+        </p>
+        <Overlay isHighlight={isHighlight} />
+      </div>
     </>
   );
 }

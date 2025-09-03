@@ -19,6 +19,9 @@ interface TooltipProps {
   onButtonClick?: () => void;
   className?: string;
   showArrow?: boolean;
+  containerClassName?: string;
+  arrowClassName?: string;
+  footerSection?: React.ReactNode;
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -29,6 +32,9 @@ const Tooltip: React.FC<TooltipProps> = ({
   onButtonClick,
   className,
   showArrow = true,
+  containerClassName,
+  arrowClassName,
+  footerSection,
 }) => {
   const tooltipSectionRef = useRef<HTMLDivElement>(null);
 
@@ -50,8 +56,8 @@ const Tooltip: React.FC<TooltipProps> = ({
     const arrows = {
       top: "top-full left-1/2 -translate-x-1/2 -translate-y-1/2",
       bottom: "bottom-full left-1/2 -translate-x-1/2 translate-y-1/2",
-      left: "left-full top-1/2 -translate-y-1/2 translate-x-1/2",
-      right: "right-full top-1/2 -translate-y-1/2 -translate-x-1/2",
+      left: "left-full top-1/2 -translate-y-1/2 -translate-x-1/2",
+      right: "right-full top-1/2 -translate-y-1/2 translate-x-1/2",
       "top-left": "top-full right-3 -translate-y-1/2",
       "top-right": "top-full left-3 -translate-y-1/2",
       "bottom-left": "bottom-full right-3 translate-y-1/2",
@@ -61,13 +67,13 @@ const Tooltip: React.FC<TooltipProps> = ({
   };
 
   useEffect(() => {
-   
-      if (tooltipSectionRef.current) {
-        tooltipSectionRef.current.scrollIntoView(
-          { behavior: "smooth", block: "end", inline: "nearest" }
-        );
-      }
-    
+    if (tooltipSectionRef.current) {
+      tooltipSectionRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+    }
   }, []);
 
   return (
@@ -81,38 +87,53 @@ const Tooltip: React.FC<TooltipProps> = ({
       {/* Tooltip Container */}
       <div
         ref={tooltipSectionRef}
-        className="relative bg-white/10 backdrop-blur-[15px] rounded-lg p-4 border border-white/20 shadow-lg"
+        className={cn(
+          "relative w-[375px] h-fit flex flex-col gap-6 p-6 rounded-[24px] bg-[#AA9CFC]/[0.12] backdrop-blur-[32px]",
+          containerClassName
+        )}
       >
         {/* Modern Arrow - Rotated Square */}
         {showArrow && (
           <div
             className={cn(
-              "absolute w-3 h-3 bg-white/10 backdrop-blur-[15px] border border-white/20 rotate-45",
-              getArrowClasses(position)
+              "absolute w-4 h-4 backdrop-blur-[32px] border-0 bg-[#AA9CFC]/[0.12] rotate-45",
+              getArrowClasses(position),
+              arrowClassName
             )}
           />
         )}
 
         {/* Content */}
-        <div className="space-y-3">
+        <div className="space-y-3 text-left">
           {/* Title */}
-          <h3 className="text-lg font-semibold text-slate-500">{title}</h3>
+          <h3 className="text-[36px] leading-[44px] font-medium text-white">
+            {title}
+          </h3>
 
           {/* Message */}
-          <p className="text-sm text-slate-500 leading-relaxed">{message}</p>
+          <p className="text-[16px] leading-[22px] font-normal text-white">
+            {message}
+          </p>
 
           {/* Button */}
           {buttonText && (
-            <div className="flex justify-end pt-2">
+            <div className="flex justify-start pt-2">
               <button
                 onClick={onButtonClick}
-                className="px-4 py-2 !bg-green-300 hover:bg-green-500 text-white text-sm font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 focus:ring-offset-transparent"
+                className="inline-flex items-center gap-4 px-5 py-3 min-h-[48px] rounded-[12px] !bg-[#A6F20D] border border-[#6633CC]/0 text-[16px] leading-[24px] font-medium tracking-[0.48px] text-[#020203]"
               >
                 {buttonText}
               </button>
             </div>
           )}
         </div>
+
+        {/* Footer Section */}
+        {footerSection && (
+          <div className="mt-4">
+            {footerSection}
+          </div>
+        )}
       </div>
     </div>
   );

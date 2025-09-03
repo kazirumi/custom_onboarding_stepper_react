@@ -13,6 +13,7 @@
     "@tailwindcss/vite": "^4.1.12",
     "@vivaui/card": "^1.0.0",
     "@vivaui/navbar": "^1.0.0",
+    "@vivaui/theme": "^1.0.0",
     "clsx": "^2.1.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
