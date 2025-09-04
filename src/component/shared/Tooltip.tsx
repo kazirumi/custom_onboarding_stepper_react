@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { cn } from "../../utils/cn";
+import { usePreview } from "../../hooks/usePreview";
 
 type TooltipPosition =
   | "top"
@@ -66,18 +67,21 @@ const Tooltip: React.FC<TooltipProps> = ({
     return arrows[pos];
   };
 
-  useEffect(() => {
-    if (tooltipSectionRef.current && position === 'bottom') {
-      setTimeout(() => {
+  const { highlightSection } = usePreview();
 
-        tooltipSectionRef?.current?.scrollIntoView({
-          behavior: "smooth",
-          block: "end",
-          inline: "nearest",
-        });
-      }, 500);
+  useEffect(() => {
+    if (tooltipSectionRef.current && (position === 'bottom' || position === "bottom-left" || position === "bottom-right") ) {
+      tooltipSectionRef?.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      });
+    } else {
+      tooltipSectionRef?.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
     }
-  }, []);
+  }, [highlightSection]);
 
   return (
     <div

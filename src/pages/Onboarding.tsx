@@ -28,7 +28,7 @@ function App() {
   return (
     <>
       <div
-        className="w-full bg-cover bg-center bg-no-repeat"
+        className="w-full bg-cover bg-center"
         style={{ backgroundImage: `url(${bgImage})` }}
       >
         <div className="inline-flex justify-center w-fit mx-auto">
@@ -64,7 +64,7 @@ function App() {
               title="Spend like a hero"
               message="Browse games, visit their shops, and buy items with Gold"
               buttonText="Finish"
-              position="right"
+              position="top"
               showArrow={true}
               onButtonClick={() => {
                 setIsHighlight(false);
@@ -98,6 +98,7 @@ function App() {
         <p className="read-the-docs">
           Click on the Vite and React logos to learn more
         </p>
+        <div className="h-[500px]"></div>
         <Overlay isHighlight={isHighlight} />
       </div>
     </>

@@ -22,17 +22,17 @@ const HighlightedCardWrapper = ({
 
   const highlightedSectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (highlightSection === sectionName) {
-      if (highlightedSectionRef.current) {
-        highlightedSectionRef.current.scrollIntoView({
-          behavior: "smooth",
-          block: "end",
-          inline: "nearest",
-        });
-      }
-    }
-  }, [highlightSection]);
+  // useEffect(() => {
+  //   if (highlightSection === sectionName) {
+  //     if (highlightedSectionRef.current) {
+  //       highlightedSectionRef.current.scrollIntoView({
+  //         behavior: "smooth",
+  //         block: "end",
+  //         inline: "nearest",
+  //       });
+  //     }
+  //   }
+  // }, [highlightSection]);
 
   return (
     <>
