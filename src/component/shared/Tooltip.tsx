@@ -70,7 +70,12 @@ const Tooltip: React.FC<TooltipProps> = ({
   const { highlightSection } = usePreview();
 
   useEffect(() => {
-    if (tooltipSectionRef.current && (position === 'bottom' || position === "bottom-left" || position === "bottom-right") ) {
+    if (
+      tooltipSectionRef.current &&
+      (position === "bottom" ||
+        position === "bottom-left" ||
+        position === "bottom-right")
+    ) {
       tooltipSectionRef?.current?.scrollIntoView({
         behavior: "smooth",
         block: "end",
@@ -95,7 +100,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       <div
         ref={tooltipSectionRef}
         className={cn(
-          "relative w-[375px] h-fit flex flex-col gap-6 p-6 rounded-[24px] bg-[#AA9CFC]/[0.12] backdrop-blur-[32px]",
+          "relative md:w-[375px] w-[327px] h-fit flex flex-col gap-6 p-6 rounded-[24px] bg-[#AA9CFC]/[0.12] backdrop-blur-[32px]",
           containerClassName
         )}
       >
@@ -110,24 +115,26 @@ const Tooltip: React.FC<TooltipProps> = ({
             style={{
               width: 0,
               height: 0,
-              borderLeft: '10px solid transparent',
-              borderRight: '10px solid transparent',
+              borderLeft: "10px solid transparent",
+              borderRight: "10px solid transparent",
               borderTop: `15px solid rgba(170, 156, 252, 0.12)`, // Matches your container
             }}
           />
         )}
 
         {/* Content */}
-        <div className="space-y-3 text-left">
-          {/* Title */}
-          <h3 className="text-[36px] leading-[44px] font-medium text-white">
-            {title}
-          </h3>
+        <div className="flex flex-col gap-y-6 text-left">
+          <section className="flex flex-col gap-y-2 text-left">
+            {/* Title */}
+            <h3 className="md:text-[36px] text-[30px] md:leading-[44px] leading-[40px] font-medium text-white">
+              {title}
+            </h3>
 
-          {/* Message */}
-          <p className="text-[16px] leading-[22px] font-normal text-white">
-            {message}
-          </p>
+            {/* Message */}
+            <p className="text-[16px] leading-[22px] font-normal text-white">
+              {message}
+            </p>
+          </section>
 
           {/* Button */}
           {buttonText && (
@@ -143,11 +150,7 @@ const Tooltip: React.FC<TooltipProps> = ({
         </div>
 
         {/* Footer Section */}
-        {footerSection && (
-          <div className="mt-4">
-            {footerSection}
-          </div>
-        )}
+        {footerSection && <div className="mt-4">{footerSection}</div>}
       </div>
     </div>
   );
